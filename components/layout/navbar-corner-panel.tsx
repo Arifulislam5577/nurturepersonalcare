@@ -16,7 +16,8 @@ const TOGGLE_SIZE_PX = 44
 const EDGE_GAP_PX = 16
 const LARGE_SCREEN_PX = 1024
 const MEDIUM_SCREEN_PX = 768
-const SHOW_AFTER_SCROLL_PX = 120
+const HERO_ID = 'top'
+const TOGGLE_ZONE_PX = 80
 
 const panelLinks = [...navigation.links, navigation.contact]
 
@@ -36,7 +37,7 @@ function clamp(value: number, min: number, max: number): number {
 
 export function NavbarCornerPanel() {
   const [isOpen, setIsOpen] = useState(false)
-  const [isPastTop, setIsPastTop] = useState(false)
+  const [isPastHero, setIsPastHero] = useState(false)
   const [size, setSize] = useState<PanelSize>({ width: 0, height: 0 })
   const menuId = useId()
 
@@ -125,21 +126,17 @@ export function NavbarCornerPanel() {
   )
 
   useEffect(() => {
-    let frameId = 0
-    const update = () => {
-      frameId = 0
-      setIsPastTop(window.scrollY > SHOW_AFTER_SCROLL_PX)
-    }
-    const handleScroll = () => {
-      if (!frameId) frameId = requestAnimationFrame(update)
-    }
+    const hero = document.getElementById(HERO_ID)
+    if (!hero) return
 
-    update()
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => {
-      cancelAnimationFrame(frameId)
-      window.removeEventListener('scroll', handleScroll)
-    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry) setIsPastHero(!entry.isIntersecting)
+      },
+      { rootMargin: `-${TOGGLE_ZONE_PX}px 0px 0px 0px` },
+    )
+    observer.observe(hero)
+    return () => observer.disconnect()
   }, [])
 
   useEffect(() => {
@@ -204,7 +201,7 @@ export function NavbarCornerPanel() {
     else target.scrollIntoView()
   }
 
-  const isToggleVisible = isOpen || isPastTop
+  const isToggleVisible = isOpen || isPastHero
 
   return (
     <div>
