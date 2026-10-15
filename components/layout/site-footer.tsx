@@ -11,7 +11,7 @@ export function SiteFooter() {
     <footer className="frame my-frame bg-bark pt-20 pb-10 text-cream md:pt-32 md:pb-12">
       <div className="main-container flex flex-col items-center gap-20 md:gap-24">
         <div className="flex flex-col items-center gap-14 text-center md:gap-20">
-          <Link href="#top" scroll={false} aria-label={`${site.name}, back to top`}>
+          <Link href="/" aria-label={`${site.name} home`}>
             <Image src={logo} alt="" className="h-24 w-auto md:h-32 xl:h-36" />
           </Link>
           <p className="max-w-md t-body text-cream/65">{site.summary}</p>

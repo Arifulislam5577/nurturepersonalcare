@@ -1,10 +1,11 @@
 export const navigation = {
+  home: { label: 'Home', href: '/' },
   links: [
-    { label: 'Shop', href: '#shop' },
-    { label: 'About', href: '#story' },
-    { label: 'Collections', href: '#collections' },
-    { label: 'FAQs', href: '#faq' },
+    { label: 'Shop', href: '/shop' },
+    { label: 'Gift Sets', href: '/product-category/gift-sets' },
+    { label: 'About', href: '/about-nurture-personal-care' },
+    { label: 'Science Hub', href: '/blog-nurture-personal-care' },
   ],
-  shop: { label: 'Online shop', href: 'https://nurturepersonalcare.co.za/shop/' },
-  contact: { label: 'Contact', href: '#contact' },
+  cart: { label: 'Cart', href: '/cart' },
+  contact: { label: 'Contact', href: '/contact-us-nurture-personal-care' },
 } as const

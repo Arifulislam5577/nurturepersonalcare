@@ -3,6 +3,7 @@
 import { gsap } from 'gsap'
 import { ArrowUpRight, X } from 'lucide-react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useCallback, useEffect, useId, useRef, useState, type MouseEvent } from 'react'
 
 import { cn } from '@/lib/cn'
@@ -19,12 +20,12 @@ const MEDIUM_SCREEN_PX = 768
 const HERO_ID = 'top'
 const TOGGLE_ZONE_PX = 80
 
-const panelLinks = [...navigation.links, navigation.contact]
+const panelLinks = [navigation.home, ...navigation.links, navigation.contact]
 
 const contactLinks = [
   { label: site.email, href: `mailto:${site.email}` },
   { label: site.phone.label, href: site.phone.href },
-  { label: navigation.shop.label, href: navigation.shop.href },
+  { label: navigation.cart.label, href: navigation.cart.href },
 ]
 
 function prefersReducedMotion(): boolean {
@@ -40,6 +41,7 @@ export function NavbarCornerPanel() {
   const [isPastHero, setIsPastHero] = useState(false)
   const [size, setSize] = useState<PanelSize>({ width: 0, height: 0 })
   const menuId = useId()
+  const pathname = usePathname()
 
   const anchorRef = useRef<HTMLDivElement>(null)
   const toggleRef = useRef<HTMLButtonElement>(null)
@@ -137,7 +139,7 @@ export function NavbarCornerPanel() {
     )
     observer.observe(hero)
     return () => observer.disconnect()
-  }, [])
+  }, [pathname])
 
   useEffect(() => {
     const main = document.getElementById('main')
@@ -191,7 +193,10 @@ export function NavbarCornerPanel() {
   }, [isOpen, measure, setOpen, showCursor])
 
   const handleLinkClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
-    if (!href.startsWith('#')) return
+    if (!href.startsWith('#')) {
+      setOpen(false)
+      return
+    }
     event.preventDefault()
     setOpen(false)
     lenisStore.instance?.start()
@@ -243,7 +248,7 @@ export function NavbarCornerPanel() {
                   <li key={link.href} data-panel-item="">
                     <Link
                       href={link.href}
-                      scroll={false}
+                      scroll={link.href.startsWith('#') ? false : undefined}
                       onClick={(event) => handleLinkClick(event, link.href)}
                       className="group/link flex flex-col gap-3 rounded-sm text-4xl font-light tracking-tight text-cream/50 transition-colors duration-200 select-none hover:text-cream sm:gap-4 @sm:text-5xl"
                     >

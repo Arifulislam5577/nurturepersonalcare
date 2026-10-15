@@ -11,12 +11,7 @@ export function SiteHeader() {
   return (
     <header className="absolute inset-x-frame top-frame z-40 text-cream">
       <div className="flex h-20 items-center justify-between gap-6 px-5 md:h-24 md:px-8 lg:grid lg:grid-cols-3">
-        <Link
-          href="#top"
-          scroll={false}
-          className="shrink-0 justify-self-start"
-          aria-label={`${site.name}, back to top`}
-        >
+        <Link href="/" className="shrink-0 justify-self-start" aria-label={`${site.name} home`}>
           <Image src={logo} alt="" className="h-9 w-auto md:h-11" priority />
         </Link>
 
@@ -26,7 +21,6 @@ export function SiteHeader() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  scroll={false}
                   className="group block py-3 t-label text-cream/85 transition-colors hover:text-cream"
                 >
                   <span className="relative block overflow-hidden">
@@ -48,16 +42,15 @@ export function SiteHeader() {
 
         <div className="hidden items-center gap-6 justify-self-end lg:flex">
           <Link
-            href={navigation.shop.href}
+            href={navigation.cart.href}
             className="flex items-center gap-2 t-label text-cream transition-opacity hover:opacity-70"
           >
             <ShoppingBag className="size-4" aria-hidden="true" />
-            {navigation.shop.label}
+            {navigation.cart.label}
           </Link>
           <span className="h-6 w-px bg-cream/30" aria-hidden="true" />
           <Link
             href={navigation.contact.href}
-            scroll={false}
             className="inline-flex min-h-12 items-center rounded-full bg-cream px-6 t-button text-bark transition-colors duration-500 hover:bg-cream/15 hover:text-cream"
           >
             {navigation.contact.label}

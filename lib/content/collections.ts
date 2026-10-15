@@ -14,7 +14,7 @@ export const collections = {
         'Refreshing and indulgent essentials featuring the Orange Burst Shower Gel, nourishing Body Lotion, and rich Body Crème (Citrus & Rose).',
       action: {
         label: 'Explore Women’s Care',
-        href: 'https://nurturepersonalcare.co.za/product-category/womens-collection/',
+        href: '/product-category/womens-collection',
       },
       image: {
         src: womensImage,
@@ -29,7 +29,7 @@ export const collections = {
         'Grounded, invigorating care featuring the Nostalgic Burst Shower Gel for Men, Body Lotion for Men (Cinnamon), and Body Crème for Men (Gardenia).',
       action: {
         label: 'Explore Men’s Care',
-        href: 'https://nurturepersonalcare.co.za/product-category/mens-collection/',
+        href: '/product-category/mens-collection',
       },
       image: {
         src: mensImage,

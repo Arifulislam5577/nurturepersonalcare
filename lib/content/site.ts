@@ -11,5 +11,5 @@ export const site = {
   phone: { label: '+27 (060) 349-5989', href: 'tel:+27603495989' },
   location: 'Gauteng, South Africa',
   replyTime: '24 to 48 hours, Monday to Friday',
-  shopUrl: 'https://nurturepersonalcare.co.za/shop/',
+  shopUrl: '/shop',
 } as const

@@ -4,10 +4,10 @@ export const footer = {
       id: 'company',
       title: 'Company',
       links: [
-        { label: 'Shop', href: 'https://nurturepersonalcare.co.za/shop/' },
-        { label: 'Home', href: '#top' },
-        { label: 'About', href: '#story' },
-        { label: 'Contact', href: '#contact' },
+        { label: 'Shop', href: '/shop' },
+        { label: 'Home', href: '/' },
+        { label: 'About', href: '/about-nurture-personal-care' },
+        { label: 'Contact', href: '/contact-us-nurture-personal-care' },
       ],
     },
     {
@@ -16,27 +16,27 @@ export const footer = {
       links: [
         {
           label: 'Gift Sets',
-          href: 'https://nurturepersonalcare.co.za/product-category/gift-sets/',
+          href: '/product-category/gift-sets',
         },
         {
           label: 'Men’s Collection',
-          href: 'https://nurturepersonalcare.co.za/product-category/mens-collection/',
+          href: '/product-category/mens-collection',
         },
         {
           label: 'Women’s Collection',
-          href: 'https://nurturepersonalcare.co.za/product-category/womens-collection/',
+          href: '/product-category/womens-collection',
         },
         {
           label: 'Body Cremes',
-          href: 'https://nurturepersonalcare.co.za/product-category/body-cremes/',
+          href: '/product-category/body-cremes',
         },
         {
           label: 'Body Lotions',
-          href: 'https://nurturepersonalcare.co.za/product-category/body-lotions/',
+          href: '/product-category/body-lotions',
         },
         {
           label: 'Shower Gels',
-          href: 'https://nurturepersonalcare.co.za/product-category/shower-gels-2/',
+          href: '/product-category/shower-gels-2',
         },
       ],
     },
@@ -46,10 +46,10 @@ export const footer = {
       links: [
         {
           label: 'Science Hub',
-          href: 'https://nurturepersonalcare.co.za/blog-nurture-personal-care/',
+          href: '/blog-nurture-personal-care',
         },
-        { label: 'FAQs', href: '#faq' },
-        { label: 'Best sellers', href: '#best-sellers' },
+        { label: 'FAQs', href: '/contact-us-nurture-personal-care' },
+        { label: 'Cart', href: '/cart' },
       ],
     },
   ],

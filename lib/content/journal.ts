@@ -9,7 +9,7 @@ export const journal = {
     'Practical guides on plant-powered hydration, protecting your skin in urban climates, and elevating your daily rituals.',
   action: {
     label: 'Visit the Science Hub',
-    href: 'https://nurturepersonalcare.co.za/blog-nurture-personal-care/',
+    href: '/blog-nurture-personal-care',
   },
   posts: [
     {
@@ -18,7 +18,7 @@ export const journal = {
       excerpt:
         'Not every scent makes the cut. Here’s how we landed on Citrus Rose, and why balance mattered more than anything else.',
       publishedAt: '2026-08-24',
-      href: 'https://nurturepersonalcare.co.za/2026/08/24/behind-the-scent-how-we-chose-citrus-rose/',
+      href: '/2026/08/24/behind-the-scent-how-we-chose-citrus-rose',
       image: {
         src: citrusRoseImage,
         alt: 'Citrus peel and dried petals on a rustic wooden table',
@@ -30,7 +30,7 @@ export const journal = {
       excerpt:
         'Dehydrated skin isn’t the same as dry skin. Here are five signs to watch for, and simple ways to fix it.',
       publishedAt: '2026-08-24',
-      href: 'https://nurturepersonalcare.co.za/2026/08/24/5-signs-your-skin-is-dehydrated-and-what-to-do-about-it/',
+      href: '/2026/08/24/5-signs-your-skin-is-dehydrated-and-what-to-do-about-it',
       image: {
         src: dehydratedImage,
         alt: 'A woman touching her forearm beside a glass of water',
@@ -42,7 +42,7 @@ export const journal = {
       excerpt:
         'Lotions and cremes aren’t interchangeable. Here’s the real difference between them.',
       publishedAt: '2026-08-24',
-      href: 'https://nurturepersonalcare.co.za/2026/08/24/lotion-vs-creme-which-one-does-your-skin-actually-need/',
+      href: '/2026/08/24/lotion-vs-creme-which-one-does-your-skin-actually-need',
       image: {
         src: lotionCremeImage,
         alt: 'A woman applying lotion to her arm at a bathroom basin',

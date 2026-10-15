@@ -10,7 +10,7 @@ import woodExtractImage from '@/public/images/product-wood-extract-lotion-for-me
 export const products = {
   eyebrow: 'Our best sellers',
   title: 'The daily rituals your skin has been waiting for',
-  action: { label: 'View all', href: 'https://nurturepersonalcare.co.za/shop/' },
+  action: { label: 'View all', href: '/shop' },
   items: [
     {
       id: 'orange-burst-shower-gel',
@@ -21,7 +21,7 @@ export const products = {
         'Infused with natural orange zest, this shower gel is a burst of sunshine in a bottle, crafted to deliver the perfect balance of freshness, indulgence, and sense of aroma.',
       priceCents: 9199,
       originalPriceCents: 10000,
-      href: 'https://nurturepersonalcare.co.za/product/orange-burst-shower-gel/',
+      href: '/product/orange-burst-shower-gel',
       image: { src: orangeBurstImage, alt: 'Nurture Orange Burst Shower Gel with a halved orange' },
     },
     {
@@ -33,7 +33,7 @@ export const products = {
         'A biodegradable formula designed to soothe all skin types and deliver 100% comfort. Perfect for locking in moisture after a morning shower or pre-work gym session.',
       priceCents: 9599,
       originalPriceCents: 12000,
-      href: 'https://nurturepersonalcare.co.za/product/fresh-lemon-lotion/',
+      href: '/product/fresh-lemon-lotion',
       image: { src: lemonLotionImage, alt: 'Nurture Lemon Fresh Body Lotion with sliced lemons' },
     },
     {
@@ -45,7 +45,7 @@ export const products = {
         'Enriched with warm gardenia extracts and 0% harsh chemicals. Deeply conditions rough skin on hands, elbows, and body with a masculine, subtle earthiness.',
       priceCents: 10800,
       originalPriceCents: 13600,
-      href: 'https://nurturepersonalcare.co.za/product/warm-gardenia-creme-for-men/',
+      href: '/product/warm-gardenia-creme-for-men',
       image: {
         src: gardeniaImage,
         alt: 'Nurture Warm Gardenia Body Crème for Men with gardenia flowers',
@@ -59,7 +59,7 @@ export const products = {
       description: null,
       priceCents: 12399,
       originalPriceCents: 15500,
-      href: 'https://nurturepersonalcare.co.za/product/wood-extract-lotion-for-men/',
+      href: '/product/wood-extract-lotion-for-men',
       image: {
         src: woodExtractImage,
         alt: 'Nurture Wood Extract Body Lotion for Men in a black pump bottle',
@@ -73,7 +73,7 @@ export const products = {
       description: null,
       priceCents: 33199,
       originalPriceCents: 41500,
-      href: 'https://nurturepersonalcare.co.za/product/combo-for-men/',
+      href: '/product/combo-for-men',
       image: {
         src: comboMenImage,
         alt: 'Nurture Nostalgic Burst Shower Gel, Wood Extract Body Lotion and Warm Gardenia Body Crème for Men together',
@@ -87,7 +87,7 @@ export const products = {
       description: null,
       priceCents: 9999,
       originalPriceCents: 13600,
-      href: 'https://nurturepersonalcare.co.za/product/nostalgic-burst-shower-gel-for-men/',
+      href: '/product/nostalgic-burst-shower-gel-for-men',
       image: {
         src: nostalgicImage,
         alt: 'Nurture Nostalgic Burst Shower Gel for Men on a bathroom shelf',
@@ -101,7 +101,7 @@ export const products = {
       description: null,
       priceCents: 28799,
       originalPriceCents: 36100,
-      href: 'https://nurturepersonalcare.co.za/product/combo-for-ladies/',
+      href: '/product/combo-for-ladies',
       image: {
         src: comboLadiesImage,
         alt: 'Nurture Lemon Fresh Body Lotion, Orange Burst Shower Gel and Citrus Rose Body Crème together',
@@ -115,7 +115,7 @@ export const products = {
       description: null,
       priceCents: 9999,
       originalPriceCents: 13600,
-      href: 'https://nurturepersonalcare.co.za/product/citrus-rose-creme/',
+      href: '/product/citrus-rose-creme',
       image: {
         src: citrusRoseImage,
         alt: 'Nurture Citrus Rose Body Crème with grapefruit and roses',
