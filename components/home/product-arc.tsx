@@ -1,7 +1,14 @@
 'use client'
 
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { useEffect, useRef, useState, type CSSProperties, type MouseEvent } from 'react'
+import {
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type MouseEvent,
+} from 'react'
 
 import { products } from '@/lib/content/products'
 import { formatPrice } from '@/lib/format-price'
@@ -17,7 +24,7 @@ const SLOTS: readonly Slot[] = [
   { x: 711, y: 113, rotate: 18.83 },
   { x: 1033, y: 243, rotate: 25.05 },
 ]
-const LAST_VISIBLE_OFFSET = 2
+const LAST_VISIBLE_OFFSET = 3
 const SWIPE_THRESHOLD_PX = 50
 
 const stepButtonClass =
@@ -40,7 +47,7 @@ function getSlotStyle(offset: number): CSSProperties {
   const isVisible = steps <= LAST_VISIBLE_OFFSET
 
   return {
-    transform: `translate(${slot.x * direction}px, ${slot.y}px) rotate(${slot.rotate * direction}deg) scale(${steps === 0 ? 1.05 : 1})`,
+    transform: `translate(${slot.x * direction}px, ${slot.y}px) rotate(${slot.rotate * direction}deg)`,
     opacity: isVisible ? 1 : 0,
     zIndex: 100 - steps,
     pointerEvents: isVisible ? 'auto' : 'none',
@@ -50,9 +57,35 @@ function getSlotStyle(offset: number): CSSProperties {
 export function ProductArc() {
   const [position, setPosition] = useState(0)
   const swipeRef = useRef({ isTracking: false, hasSwiped: false, startX: 0, startY: 0 })
+  const itemRefs = useRef<(HTMLLIElement | null)[]>([])
+  const previousOffsetsRef = useRef<number[] | null>(null)
   const count = products.items.length
   const activeIndex = ((position % count) + count) % count
   const activeProduct = products.items[activeIndex]
+
+  useLayoutEffect(() => {
+    const previousOffsets = previousOffsetsRef.current
+    const nextOffsets = products.items.map((_, index) => getOffset(index, position, count))
+    previousOffsetsRef.current = nextOffsets
+    if (!previousOffsets) return
+
+    itemRefs.current.forEach((item, index) => {
+      const previous = previousOffsets[index]
+      const next = nextOffsets[index]
+      if (!item || previous === undefined || next === undefined) return
+      if (Math.abs(next - previous) <= 1) return
+
+      const entry = getSlotStyle(next + Math.sign(next))
+      item.style.transition = 'none'
+      item.style.transform = String(entry.transform)
+      item.style.opacity = '0'
+      void item.offsetWidth
+      item.style.transition = ''
+      const target = getSlotStyle(next)
+      item.style.transform = String(target.transform)
+      item.style.opacity = String(target.opacity)
+    })
+  }, [position, count])
 
   useEffect(() => {
     const handlePointerUp = (event: PointerEvent) => {
@@ -124,6 +157,9 @@ export function ProductArc() {
               return (
                 <li
                   key={product.id}
+                  ref={(node) => {
+                    itemRefs.current[index] = node
+                  }}
                   data-index={index}
                   aria-hidden={offset !== 0}
                   className="absolute inset-0 cursor-grab transition-[transform,opacity] duration-800 ease-arc will-change-transform"

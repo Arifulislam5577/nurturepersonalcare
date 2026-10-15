@@ -2,6 +2,7 @@ import { ArrowUpRight } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
+import { cn } from '@/lib/cn'
 import type { products } from '@/lib/content/products'
 import { formatPrice } from '@/lib/format-price'
 
@@ -31,7 +32,10 @@ export function ProductCard({ product, isActive }: ProductCardProps) {
       </div>
 
       <div
-        className="pointer-events-none relative mx-auto aspect-square w-full overflow-hidden rounded-lg bg-paper"
+        className={cn(
+          'pointer-events-none relative mx-auto aspect-square w-full overflow-hidden rounded-lg bg-paper transition-transform duration-500 ease-card',
+          isActive ? 'scale-105' : 'scale-100',
+        )}
         aria-hidden="true"
       >
         <Image
