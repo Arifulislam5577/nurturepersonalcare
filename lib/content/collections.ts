@@ -2,11 +2,13 @@ import mensImage from '@/public/images/mens-collection-lifestyle.jpg'
 import womensImage from '@/public/images/womens-collection-lifestyle.jpg'
 
 export const collections = {
-  eyebrow: 'Shop by collection',
-  title: 'Two collections, one daily ritual.',
+  eyebrow: 'Skincare with purpose',
+  title: 'Skincare with Purpose for Real Lives',
+  body: 'Whether you’re commuting through Johannesburg, closing deals in Sandton, or unwinding on a Cape Town balcony, your skin takes a beating. Nurture Personal Care bridges the gap between premium luxury and everyday practicality.',
   items: [
     {
       id: 'womens',
+      eyebrow: 'For her',
       title: 'The Women’s Collection',
       description:
         'Refreshing and indulgent essentials featuring the Orange Burst Shower Gel, nourishing Body Lotion, and rich Body Crème (Citrus & Rose).',
@@ -21,6 +23,7 @@ export const collections = {
     },
     {
       id: 'mens',
+      eyebrow: 'For him',
       title: 'The Men’s Collection',
       description:
         'Grounded, invigorating care featuring the Nostalgic Burst Shower Gel for Men, Body Lotion for Men (Cinnamon), and Body Crème for Men (Gardenia).',

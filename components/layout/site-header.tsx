@@ -1,6 +1,6 @@
 'use client'
 
-import { Menu, X } from 'lucide-react'
+import { Menu, ShoppingBag, X } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
@@ -9,14 +9,13 @@ import { cn } from '@/lib/cn'
 import { navigation } from '@/lib/content/navigation'
 import { site } from '@/lib/content/site'
 
-import logo from '@/public/images/nurture-logo.png'
+import logo from '@/public/images/nurture-logo-cream.png'
 
-const HIDE_AFTER_PX = 160
+const HIDE_AFTER_PX = 200
 
 export function SiteHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isHidden, setIsHidden] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
     let lastScrollY = window.scrollY
@@ -25,7 +24,7 @@ export function SiteHeader() {
     const update = () => {
       frameId = 0
       const scrollY = window.scrollY
-      setIsScrolled(scrollY > 24)
+      if (Math.abs(scrollY - lastScrollY) < 6) return
       setIsHidden(scrollY > HIDE_AFTER_PX && scrollY > lastScrollY)
       lastScrollY = scrollY
     }
@@ -33,7 +32,6 @@ export function SiteHeader() {
       if (!frameId) frameId = requestAnimationFrame(update)
     }
 
-    update()
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => {
       cancelAnimationFrame(frameId)
@@ -55,64 +53,80 @@ export function SiteHeader() {
   return (
     <header
       className={cn(
-        'fixed inset-x-0 top-0 z-50 pt-frame transition-transform duration-700 ease-out-expo',
-        !isVisible && '-translate-y-full',
+        'fixed inset-x-frame top-frame z-50 text-cream transition-transform duration-700 ease-card',
+        !isVisible && '-translate-y-28',
       )}
     >
-      <div className="main-container">
-        <div
-          className={cn(
-            'flex items-center justify-between gap-6 rounded-full py-2 pr-2 pl-5 transition-[background-color,box-shadow] duration-500',
-            isScrolled || isMenuOpen
-              ? 'bg-white/90 shadow-lg ring-1 shadow-ink/5 ring-ink/5 backdrop-blur-xl'
-              : 'bg-white/75 backdrop-blur-md',
-          )}
-        >
+      <div
+        className={cn(
+          'overflow-clip rounded-2xl bg-linear-to-b from-bark/70 to-bark/45 backdrop-blur-glass lg:rounded-full',
+          isMenuOpen && 'from-forest to-forest',
+        )}
+      >
+        <div className="flex h-16 items-center justify-between gap-6 pr-3 pl-6 lg:h-18 lg:pl-8">
           <Link
             href="#top"
             scroll={false}
             className="shrink-0"
             aria-label={`${site.name}, back to top`}
           >
-            <Image src={logo} alt="" className="h-9 w-auto" priority />
+            <Image src={logo} alt="" className="h-8 w-auto lg:h-9" priority />
           </Link>
 
           <nav aria-label="Main" className="hidden lg:block">
-            <ul className="flex items-center gap-1">
+            <ul className="flex items-center gap-9">
               {navigation.links.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
                     scroll={false}
-                    className="rounded-full px-4 py-2.5 text-sm font-medium text-slate transition-colors hover:bg-ink/5 hover:text-ink"
+                    className="group block py-3 t-label text-cream/70 transition-colors hover:text-cream"
                   >
-                    {link.label}
+                    <span className="relative block overflow-hidden">
+                      <span className="block transition-transform duration-500 ease-card group-hover:-translate-y-full">
+                        {link.label}
+                      </span>
+                      <span
+                        className="absolute inset-0 block translate-y-full transition-transform duration-500 ease-card group-hover:translate-y-0"
+                        aria-hidden="true"
+                      >
+                        {link.label}
+                      </span>
+                    </span>
                   </Link>
                 </li>
               ))}
             </ul>
           </nav>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-5">
+            <Link
+              href={navigation.shop.href}
+              className="hidden items-center gap-2 t-label text-cream/80 transition-opacity hover:opacity-70 lg:flex"
+            >
+              <ShoppingBag className="size-4" aria-hidden="true" />
+              {navigation.shop.label}
+            </Link>
+            <span className="hidden h-5 w-px bg-cream/25 lg:block" aria-hidden="true" />
             <Link
               href={navigation.contact.href}
               scroll={false}
-              className="hidden min-h-11 items-center rounded-full bg-ink px-5 text-sm font-semibold text-paper transition-colors hover:bg-lagoon sm:inline-flex"
+              className="hidden min-h-11 items-center rounded-full bg-cream px-5 t-button text-bark transition-colors duration-500 hover:bg-cream/15 hover:text-cream sm:inline-flex"
             >
               {navigation.contact.label}
             </Link>
             <button
               type="button"
-              className="grid size-11 place-items-center rounded-full bg-leaf text-ink lg:hidden"
+              className="grid size-11 place-items-center rounded-full text-cream lg:hidden"
               aria-expanded={isMenuOpen}
               aria-controls="mobile-menu"
               aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
               onClick={() => setIsMenuOpen((isOpen) => !isOpen)}
             >
               {isMenuOpen ? (
-                <X className="size-5" aria-hidden="true" />
+                <X className="size-6" aria-hidden="true" />
               ) : (
-                <Menu className="size-5" aria-hidden="true" />
+                <Menu className="size-6" aria-hidden="true" />
               )}
             </button>
           </div>
@@ -122,17 +136,17 @@ export function SiteHeader() {
           id="mobile-menu"
           aria-label="Mobile"
           hidden={!isMenuOpen}
-          className="mt-2 rounded-card bg-ink p-3 text-paper shadow-2xl lg:hidden"
+          className="border-t border-cream/10 px-6 pt-4 pb-8 lg:hidden"
           data-lenis-prevent=""
         >
           <ul>
-            {[...navigation.links, navigation.contact].map((link) => (
-              <li key={link.href} className="border-b border-paper/10 last:border-none">
+            {[...navigation.links, navigation.shop, navigation.contact].map((link) => (
+              <li key={link.href}>
                 <Link
                   href={link.href}
-                  scroll={false}
+                  scroll={link.href.startsWith('#') ? false : undefined}
                   onClick={() => setIsMenuOpen(false)}
-                  className="flex min-h-14 items-center px-4 text-title font-medium"
+                  className="flex min-h-14 items-center t-h3 text-cream"
                 >
                   {link.label}
                 </Link>

@@ -1,10 +1,9 @@
-import { ArrowUpRight } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
 import { journal } from '@/lib/content/journal'
 
-import { SectionIntro } from '@/components/home/section-intro'
+import { LinesReveal } from '@/components/motion/lines-reveal'
 import { Reveal } from '@/components/motion/reveal'
 import { MagneticLink } from '@/components/ui/magnetic-link'
 
@@ -20,53 +19,58 @@ export function Journal() {
     <section
       id="journal"
       aria-labelledby="journal-title"
-      className="frame mt-frame bg-white py-24 md:py-36"
+      className="frame mt-frame bg-paper py-16 text-bark md:py-24 lg:py-32"
     >
       <div className="main-container">
-        <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-          <SectionIntro
-            id="journal-title"
-            eyebrow={journal.eyebrow}
-            title={journal.title}
-            description={journal.description}
-          />
+        <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+          <div className="flex max-w-2xl flex-col items-start gap-5">
+            <Reveal>
+              <p className="tag-pill bg-sand">{journal.eyebrow}</p>
+            </Reveal>
+            <LinesReveal id="journal-title" className="t-h1">
+              {journal.title}
+            </LinesReveal>
+            <Reveal>
+              <p className="t-body-l text-bark/65">{journal.description}</p>
+            </Reveal>
+          </div>
           <Reveal className="shrink-0">
-            <MagneticLink href={journal.action.href} label={journal.action.label} />
+            <MagneticLink
+              href={journal.action.href}
+              label={journal.action.label}
+              variant="outline"
+            />
           </Reveal>
         </div>
 
-        <Reveal as="ul" isStaggered className="mt-14 grid gap-10 md:mt-20 md:grid-cols-3 md:gap-6">
+        <Reveal as="ul" isStaggered className="mt-12 grid gap-10 md:mt-20 md:grid-cols-3 md:gap-6">
           {journal.posts.map((post) => (
             <li key={post.id}>
-              <article className="group relative">
-                <div className="relative aspect-16/10 overflow-hidden rounded-card bg-paper">
+              <article className="group relative flex flex-col gap-4">
+                <div className="relative aspect-4/3 overflow-hidden rounded-card bg-sand">
                   <Image
                     src={post.image.src}
                     alt={post.image.alt}
                     fill
                     placeholder="blur"
                     sizes="(min-width: 768px) 33vw, 100vw"
-                    className="object-cover transition-transform duration-1000 ease-out-expo group-hover:scale-105"
+                    className="object-cover transition-transform duration-1000 ease-card group-hover:scale-104"
                   />
                 </div>
-                <time dateTime={post.publishedAt} className="mt-6 block eyebrow text-slate">
+                <time dateTime={post.publishedAt} className="mt-2 t-label text-bark/55">
                   {dateFormatter.format(new Date(post.publishedAt))}
                 </time>
-                <h3 className="mt-3 text-xl leading-snug font-semibold tracking-tight">
-                  <Link
-                    href={post.href}
-                    className="decoration-leaf decoration-2 underline-offset-4 group-hover:underline after:absolute after:inset-0"
-                  >
+                <h3 className="t-h5">
+                  <Link href={post.href} className="after:absolute after:inset-0">
                     {post.title}
                   </Link>
                 </h3>
-                <p className="mt-3 text-slate">{post.excerpt}</p>
+                <p className="t-body text-bark/65">{post.excerpt}</p>
                 <span
-                  className="mt-5 inline-flex items-center gap-2 text-sm font-semibold"
+                  className="self-start t-button underline decoration-bark/30 underline-offset-8 transition-colors group-hover:decoration-bark"
                   aria-hidden="true"
                 >
                   Read more
-                  <ArrowUpRight className="size-4 transition-transform group-hover:rotate-45" />
                 </span>
               </article>
             </li>

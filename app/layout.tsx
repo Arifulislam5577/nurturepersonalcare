@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Geist_Mono, Lora, Plus_Jakarta_Sans } from 'next/font/google'
+import { Geist_Mono, Manrope } from 'next/font/google'
 import Link from 'next/link'
 import type { ReactNode } from 'react'
 
@@ -12,16 +12,9 @@ import { SmoothScroll } from '@/components/motion/smooth-scroll'
 
 import './globals.css'
 
-const jakarta = Plus_Jakarta_Sans({
+const manrope = Manrope({
   subsets: ['latin'],
-  variable: '--font-jakarta',
-  display: 'swap',
-})
-
-const lora = Lora({
-  subsets: ['latin'],
-  style: ['italic'],
-  variable: '--font-lora',
+  variable: '--font-manrope',
   display: 'swap',
 })
 
@@ -47,14 +40,14 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#1e293b',
+  themeColor: '#26362a',
 }
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html
       lang="en-ZA"
-      className={`${jakarta.variable} ${lora.variable} ${geistMono.variable}`}
+      className={`${manrope.variable} ${geistMono.variable}`}
       suppressHydrationWarning
     >
       <head>
@@ -64,7 +57,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
         <Link
           href="#main"
           scroll={false}
-          className="fixed top-3 left-3 z-60 -translate-y-24 rounded-full bg-ink px-5 py-3 text-sm font-semibold text-paper transition-transform focus-visible:translate-y-0"
+          className="fixed top-3 left-3 z-60 -translate-y-24 rounded-full bg-bark px-5 py-3 t-button text-cream transition-transform focus-visible:translate-y-0"
         >
           Skip to content
         </Link>

@@ -8,21 +8,19 @@ export function Statement() {
   return (
     <section
       aria-labelledby="statement-title"
-      className="frame mt-frame bg-lagoon py-24 text-white md:py-36"
+      className="frame mt-frame bg-bark py-16 text-cream md:py-24 lg:py-32"
     >
       <div className="main-container">
         <h2 id="statement-title" className="sr-only">
           {statement.sentence}
         </h2>
-        <div
-          className="flex flex-col items-center gap-3 text-headline font-semibold md:gap-4"
-          aria-hidden="true"
-        >
+        <div className="flex flex-col items-center gap-2 t-h2 lg:gap-0" aria-hidden="true">
           {statement.rows.map((row) => (
             <Reveal
               key={row.id}
               isStaggered
-              className="flex flex-wrap items-center justify-center gap-3 md:gap-5"
+              distance={30}
+              className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2"
             >
               {row.parts.map((part) =>
                 part.kind === 'word' ? (
@@ -32,14 +30,14 @@ export function Statement() {
                 ) : (
                   <span
                     key={part.id}
-                    className="relative block h-16 w-24 shrink-0 overflow-hidden rounded-full bg-white md:h-pill-height md:w-pill-width"
+                    className="relative block h-16 w-24 shrink-0 overflow-hidden rounded-full bg-sand md:h-21.5 md:w-31"
                   >
                     <Image
                       src={part.src}
                       alt=""
                       fill
                       placeholder="blur"
-                      sizes="136px"
+                      sizes="124px"
                       className="object-cover"
                     />
                   </span>

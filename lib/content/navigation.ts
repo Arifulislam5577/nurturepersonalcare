@@ -1,10 +1,10 @@
 export const navigation = {
   links: [
+    { label: 'Shop', href: '#shop' },
+    { label: 'About', href: '#story' },
     { label: 'Collections', href: '#collections' },
-    { label: 'Best sellers', href: '#best-sellers' },
-    { label: 'Shop the range', href: '#range' },
-    { label: 'Our story', href: '#story' },
     { label: 'FAQs', href: '#faq' },
   ],
+  shop: { label: 'Online shop', href: 'https://nurturepersonalcare.co.za/shop/' },
   contact: { label: 'Contact', href: '#contact' },
 } as const

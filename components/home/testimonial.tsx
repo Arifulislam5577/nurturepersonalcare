@@ -1,30 +1,50 @@
-import { Quote } from 'lucide-react'
+import Image from 'next/image'
 
 import { testimonial } from '@/lib/content/testimonial'
 
+import { ImageReveal } from '@/components/motion/image-reveal'
+import { LinesReveal } from '@/components/motion/lines-reveal'
 import { Reveal } from '@/components/motion/reveal'
 
 export function Testimonial() {
   return (
     <section
       aria-labelledby="testimonial-title"
-      className="frame mt-frame bg-lagoon py-24 text-white md:py-36"
+      className="frame mt-frame bg-sand py-16 text-bark md:py-24 lg:py-32"
     >
-      <div className="main-container">
-        <h2 id="testimonial-title" className="flex items-center justify-center gap-3 eyebrow">
-          <span className="size-2 rounded-full bg-leaf" aria-hidden="true" />
-          {testimonial.eyebrow}
-        </h2>
-        <Reveal>
-          <figure className="mx-auto mt-12 max-w-5xl text-center">
-            <Quote className="mx-auto size-12 text-mist" aria-hidden="true" />
-            <blockquote className="mt-8">
-              <p className="font-serif text-title italic md:text-headline">“{testimonial.quote}”</p>
-            </blockquote>
-            <figcaption className="mt-12">
-              <span className="block text-lg font-semibold">{testimonial.name}</span>
-              <span className="mt-2 block eyebrow text-white/80">{testimonial.location}</span>
-            </figcaption>
+      <div className="main-container flex flex-col items-center gap-12 md:gap-20">
+        <LinesReveal id="testimonial-title" className="text-center t-h1">
+          {testimonial.title.map((line) => (
+            <span key={line} className="block">
+              {line}
+            </span>
+          ))}
+        </LinesReveal>
+
+        <Reveal className="w-full max-w-5xl">
+          <figure className="grid gap-6 rounded-frame bg-white p-4 md:grid-cols-2 md:p-6">
+            <div className="flex flex-col justify-between gap-10 p-2 md:p-6">
+              <div className="flex flex-col gap-6">
+                <p className="t-label text-bark/55">{testimonial.product}</p>
+                <blockquote>
+                  <p className="t-h4">{testimonial.quote}</p>
+                </blockquote>
+              </div>
+              <figcaption className="flex flex-col gap-1">
+                <span className="font-medium">{testimonial.name}</span>
+                <span className="t-label text-bark/55">{testimonial.location}</span>
+              </figcaption>
+            </div>
+            <ImageReveal className="relative aspect-4/5 overflow-hidden rounded-card bg-sand">
+              <Image
+                src={testimonial.image.src}
+                alt={testimonial.image.alt}
+                fill
+                placeholder="blur"
+                sizes="(min-width: 768px) 480px, 100vw"
+                className="object-cover"
+              />
+            </ImageReveal>
           </figure>
         </Reveal>
       </div>
