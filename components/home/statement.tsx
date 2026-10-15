@@ -14,7 +14,7 @@ export function Statement() {
         <h2 id="statement-title" className="sr-only">
           {statement.sentence}
         </h2>
-        <div className="flex flex-col items-center gap-2 t-h2 lg:gap-0" aria-hidden="true">
+        <div className="flex flex-col items-center gap-4 t-h2 md:gap-5" aria-hidden="true">
           {statement.rows.map((row) => (
             <Reveal
               key={row.id}

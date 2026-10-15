@@ -12,15 +12,8 @@ export function SiteFooter() {
       <div className="main-container flex flex-col items-center gap-20 md:gap-24">
         <div className="flex flex-col items-center gap-14 text-center md:gap-20">
           <Link href="#top" scroll={false} aria-label={`${site.name}, back to top`}>
-            <Image
-              src={logo}
-              alt=""
-              className="h-10 w-auto opacity-55 transition-opacity hover:opacity-100"
-            />
+            <Image src={logo} alt="" className="h-24 w-auto md:h-32 xl:h-36" />
           </Link>
-          <p className="t-display font-light lowercase" aria-hidden="true">
-            nurture
-          </p>
           <p className="max-w-md t-body text-cream/65">{site.summary}</p>
         </div>
 
