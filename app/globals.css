@@ -1,26 +1,159 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+@import 'lenis/dist/lenis.css';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  --color-leaf: #4ab848;
+  --color-lagoon: #19a0b8;
+  --color-mist: #8ee3ee;
+  --color-ink: #1e293b;
+  --color-slate: #334155;
+  --color-paper: #f8fafc;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --container-site: calc(1290px + 4rem);
+  --container-site-wide: calc(1440px + 4rem);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --text-display: clamp(2.75rem, 7.2vw, 7rem);
+  --text-display--line-height: 0.98;
+  --text-display--letter-spacing: -0.045em;
+  --text-headline: clamp(2.25rem, 4.6vw, 4.5rem);
+  --text-headline--line-height: 1.04;
+  --text-headline--letter-spacing: -0.035em;
+  --text-title: clamp(1.625rem, 2.8vw, 2.5rem);
+  --text-title--line-height: 1.15;
+  --text-title--letter-spacing: -0.02em;
+  --text-lead: clamp(1.0625rem, 1.35vw, 1.25rem);
+  --text-lead--line-height: 1.6;
+  --text-wordmark: min(24vw, 22rem);
+  --text-wordmark--line-height: 0.8;
+  --text-wordmark--letter-spacing: -0.07em;
+  --text-label: 0.75rem;
+  --text-label--line-height: 1.4;
+  --text-label--letter-spacing: 0.08em;
+
+  --radius-frame: 1.75rem;
+  --radius-card: 1.25rem;
+
+  --spacing-frame: 0.75rem;
+  --spacing-pill-height: 5.5rem;
+  --spacing-pill-width: 8.5rem;
+
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-in-out-circ: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+
+  --animate-marquee: marquee 38s linear infinite;
+  --animate-hero-zoom: hero-zoom 2.2s var(--ease-out-expo) both;
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes hero-zoom {
+    from {
+      transform: scale(1.14);
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@theme inline {
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-lora), ui-serif, Georgia, serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, 'SF Mono', Menlo, monospace;
+}
+
+@utility main-container {
+  @apply mx-auto w-full max-w-site px-4 sm:px-6 lg:px-8 2xl:max-w-site-wide;
+}
+
+@utility frame {
+  @apply relative mx-frame overflow-clip rounded-card md:rounded-frame;
+}
+
+@utility eyebrow {
+  @apply font-mono text-label font-medium uppercase;
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    background: var(--color-paper);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-paper font-sans text-ink antialiased;
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3,
+  p {
+    overflow-wrap: break-word;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--color-leaf);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-lagoon);
+    outline-offset: 3px;
+  }
+
+  details::details-content {
+    block-size: 0;
+    overflow-y: clip;
+    transition:
+      block-size 0.45s var(--ease-out-expo),
+      content-visibility 0.45s allow-discrete;
+  }
+
+  details[open]::details-content {
+    block-size: auto;
+  }
+
+  :root {
+    interpolate-size: allow-keywords;
+  }
+}
+
+.split-line {
+  padding-bottom: 0.1em;
+  margin-bottom: -0.1em;
+}
+
+.motion-ready [data-reveal]:not([data-stagger]),
+.motion-ready [data-reveal][data-stagger] > *,
+.motion-ready [data-lines] {
+  opacity: 0;
+}
+
+.motion-ready [data-image-reveal] {
+  clip-path: inset(100% 0 0 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
