@@ -6,6 +6,7 @@ import type { ReactNode } from 'react'
 import { site } from '@/lib/content/site'
 import { MOTION_READY_CLASS } from '@/lib/is-motion-allowed'
 
+import { NavbarCornerPanel } from '@/components/layout/navbar-corner-panel'
 import { SiteFooter } from '@/components/layout/site-footer'
 import { SiteHeader } from '@/components/layout/site-header'
 import { SmoothScroll } from '@/components/motion/smooth-scroll'
@@ -62,6 +63,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
           Skip to content
         </Link>
         <SiteHeader />
+        <NavbarCornerPanel />
         <main id="main">{children}</main>
         <SiteFooter />
         <SmoothScroll />
